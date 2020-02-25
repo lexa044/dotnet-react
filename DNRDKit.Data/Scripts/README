@@ -1,0 +1,22 @@
+# Create Blog Database
+
+1. Login
+mysql -u root -p
+
+2. Create a database for our installation
+
+CREATE DATABASE blog;
+
+3. Next, create a database user for our Blogs setup.
+
+CREATE USER 'blog_user'@'localhost' IDENTIFIED BY 'mysupperpassword';
+
+4. Next, grant the user permissions to access the database
+
+GRANT ALL ON blog.* TO 'blog_user'@'localhost' IDENTIFIED BY 'mysupperpassword';
+
+5. Great, now you can exit the database.
+
+FLUSH PRIVILEGES;
+
+Exit;

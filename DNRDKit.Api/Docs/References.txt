@@ -1,0 +1,16 @@
+﻿https://mysqlconnector.net/tutorials/net-core-mvc/
+https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-nginx?view=aspnetcore-3.1
+https://medium.com/swlh/building-a-nice-multi-layer-net-core-3-api-c68a9ef16368
+https://github.com/outmatic/Dapper.UnitOfWork/blob/master/src/Dapper.UnitOfWork/Dapper.UnitOfWork/UnitOfWork.cs
+https://mysqlconnector.net/tutorials/best-practices/
+https://sethreid.co.nz/creating-new-react-dotnet-project/
+https://dev.to/ianknighton/hosting-a-net-core-app-with-nginx-and-let-s-encrypt-1m50
+https://geeks.ms/jorge/2018/01/25/uso-de-swagger-en-una-asp-net-core-2-web-api-i/
+
+
+When running from Ubuntu 18.04 ClientApp does not run due to issue with npm, please use following instructions:
+
+The following two commands can be executed in the terminal to solve the problem.
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+sudo sysctl --system
+

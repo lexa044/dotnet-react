@@ -1,0 +1,145 @@
+// Override default variables before the import
+// $body-bg: #000;
+
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *:before,
+html.theme-transition *:after {
+  transition: all 750ms !important;
+  transition-delay: 0 !important;
+}
+
+// default theme(light)
+html {
+    background: #fff;
+}
+
+// dark theme
+html[data-theme="dark"]{
+    background: #fff;
+}
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+
+.bg-card-gradient {
+    background-image: -o-linear-gradient(135deg,#1970e2,#4695ff);
+    background-image: linear-gradient(-45deg,#1970e2,#4695ff);
+    background-position: center;
+    color: #fff;
+
+    a{
+        color: #fff;
+        text-decoration: underline;
+        -webkit-text-decoration-skip: ink;
+        text-decoration-skip-ink: auto;
+    }
+}
+
+.padding-y-sm {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.padding-y {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.card-product-grid {
+    margin-bottom: 20px;
+}
+
+.card .img-wrap {
+    overflow: hidden;
+}
+.card-product-grid .img-wrap {
+    border-radius: 0.2rem 0.2rem 0 0;
+    height: 220px;
+}
+[class*='card-product'] .img-wrap {
+    overflow: hidden;
+    position: relative;
+}
+.img-wrap {
+    text-align: center;
+    display: block;
+}
+
+[class*='card-product'] .img-wrap img {
+    height: 100%;
+    max-width: 100%;
+    width: auto;
+    display: inline-block;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.card-product-grid .info-wrap {
+    overflow: hidden;
+    padding: 18px 20px;
+}
+
+[class*='card-product'] a.title {
+    color: #212529;
+    display: block;
+}
+
+.price {
+    font-weight: 600;
+    color: #212529;
+}
+
+.bg {
+    background-color: #f8f9fa;
+}
+
+.header-main {
+    position: relative;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.icontext .icon {
+    position: relative;
+    margin-right: 10px;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+}
+.widget-header a {
+    color: #343a40;
+}
+.icon-sm {
+    width: 48px;
+    height: 48px;
+    line-height: 48px !important;
+    font-size: 20px;
+}
+.icon-xs, .icon-sm, .icon-md, .icon-lg {
+    display: inline-block;
+    text-align: center;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+}
+
+.icontext {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.icontext .text {
+    width: 100%;
+    line-height: 1.2;
+    color: #212529;
+}
