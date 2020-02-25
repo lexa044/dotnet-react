@@ -11,16 +11,17 @@ namespace DNRDKit.Data.Repositories
 {
     public class BlogRepository : IBlogRepository
     {
-        private readonly IUnitOfWork work;
+        private readonly IDalSession _session;
 
-        public BlogRepository(IUnitOfWork work)
+        public BlogRepository(IDalSession session)
         {
-            this.work = work;
+            _session = session;
         }
 
         public async Task<Blog> AddAsync(Blog model)
         {
-            var connection = await work.GetConnectionAsync();
+            var uom = _session.GetUnitOfWork();
+            var connection = await uom.GetConnectionAsync();
             string sql = @"INSERT INTO `BlogPost` (`Title`, `Content`) VALUES (@title, @content);
                         select LAST_INSERT_ID();";
 
@@ -28,28 +29,29 @@ namespace DNRDKit.Data.Repositories
             {
                 title = model.Title,
                 content = model.Content
-            }, work.GetTransaction());
+            }, uom.GetTransaction());
 
             return model;
         }
 
         public async Task<IEnumerable<Blog>> GetAllAsync()
         {
-            var connection = await work.GetConnectionAsync();
+            var connection = await _session.GetReadOnlyConnectionAsync();
             string sql = @"SELECT `Id`, `Title`, `Content` FROM `BlogPost` ORDER BY `Id` DESC LIMIT 10;";
-            return await connection.QueryAsync<Blog>(sql, null, work.GetTransaction());
+            return await connection.QueryAsync<Blog>(sql);
         }
 
         public async Task<Blog> GetByIdAsync(int id)
         {
-            var connection = await work.GetConnectionAsync();
+            var connection = await _session.GetReadOnlyConnectionAsync();
             string sql = @"SELECT `Id`, `Title`, `Content` FROM `BlogPost` WHERE `Id` = @id;";
-            return await connection.QueryFirstOrDefaultAsync<Blog>(sql, new { id }, work.GetTransaction());
+            return await connection.QueryFirstOrDefaultAsync<Blog>(sql, new { id });
         }
 
         public async Task<Blog> UpdateAsync(Blog model)
         {
-            var connection = await work.GetConnectionAsync();
+            var uom = _session.GetUnitOfWork();
+            var connection = await uom.GetConnectionAsync();
             string sql = @"UPDATE `BlogPost` SET `Title` = @title, `Content` = @content WHERE `Id` = @id;";
 
             await connection.ExecuteAsync(sql, new
@@ -57,7 +59,7 @@ namespace DNRDKit.Data.Repositories
                 id = model.Id,
                 title = model.Title,
                 content = model.Content
-            }, work.GetTransaction());
+            }, uom.GetTransaction());
 
             return model;
         }

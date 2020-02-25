@@ -13,13 +13,13 @@ namespace DNRDKit.Services
 {
     public class BlogService : IBlogService
     {
-        private readonly IUnitOfWork _uow;
+        private readonly IDalSession _session;
         private readonly IBlogRepository _repository;
         private readonly IMapper _mapper;
 
-        public BlogService(IUnitOfWork work, IBlogRepository repository, IMapper mapper)
+        public BlogService(IDalSession session, IBlogRepository repository, IMapper mapper)
         {
-            _uow = work;
+            _session = session;
             _repository = repository;
             _mapper = mapper;
         }
@@ -31,7 +31,7 @@ namespace DNRDKit.Services
             // Call the second repository method here.
 
             // Commit the database changes from both repositories.
-            this._uow.CommitChanges();
+            _session.GetUnitOfWork().CommitChanges();
             return _mapper.Map<BlogDTO>(newModel);
         }
 
@@ -56,7 +56,7 @@ namespace DNRDKit.Services
             // Call the second repository method here.
 
             // Commit the database changes from both repositories.
-            this._uow.CommitChanges();
+            _session.GetUnitOfWork().CommitChanges();
             return _mapper.Map<BlogDTO>(updatedModel);
         }
     }

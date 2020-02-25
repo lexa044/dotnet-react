@@ -8,7 +8,6 @@ namespace DNRDKit.Core
 {
     public interface IUnitOfWork : IDisposable
     {
-        DbConnection GetConnection();
         Task<DbConnection> GetConnectionAsync(bool transactional = false, IsolationLevel isolationLevel = IsolationLevel.ReadCommitted, CancellationToken cancellationToken = default);
 
         DbTransaction GetTransaction();

@@ -43,7 +43,7 @@ namespace DNRDKit.Api
                 configuration.RootPath = "ClientApp/build";
             });
 
-            services.AddScoped<IUnitOfWork>(_ => new UnitOfWork(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddScoped<IDalSession>(_ => new DalSession(Configuration["ConnectionStrings:ReadConnection"], Configuration["ConnectionStrings:WriteConnection"]));
             services.AddTransient<IBlogRepository, BlogRepository>();
             services.AddTransient<IBlogService, BlogService>();
 
